@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Synent Task 6 | GitHub Explorer</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="intro panel">
+        <span class="eyebrow">Task 6 - API Integration</span>
+        <h1>GitHub Explorer</h1>
+        <p>Search a GitHub username, see profile details, and review public repositories with loading and error states.</p>
+
+        <form id="search-form" class="search-row">
+          <input id="username-input" type="text" value="octocat" placeholder="Enter GitHub username" aria-label="GitHub username" />
+          <button type="submit">Search</button>
+        </form>
+
+        <div class="quick-picks" aria-label="Suggested usernames">
+          <button type="button" data-user="octocat">octocat</button>
+          <button type="button" data-user="torvalds">torvalds</button>
+          <button type="button" data-user="gaearon">gaearon</button>
+        </div>
+      </section>
+
+      <section class="panel status-row">
+        <div id="status-message" class="status">Ready to load a profile.</div>
+      </section>
+
+      <section class="profile-grid">
+        <article class="panel profile-card">
+          <img id="avatar" src="https://github.com/github.png" alt="Profile avatar" />
+          <div>
+            <h2 id="name">GitHub User</h2>
+            <p id="bio">Profile details will appear here.</p>
+          </div>
+        </article>
+
+        <article class="panel stats-grid">
+          <div><span>Followers</span><strong id="followers">-</strong></div>
+          <div><span>Following</span><strong id="following">-</strong></div>
+          <div><span>Public Repos</span><strong id="repos-count">-</strong></div>
+          <div><span>Location</span><strong id="location">-</strong></div>
+        </article>
+      </section>
+
+      <section class="panel repo-panel">
+        <div class="section-head">
+          <h3>Repositories</h3>
+          <p id="repo-meta">Latest public repositories will show here.</p>
+        </div>
+        <div id="repo-list" class="repo-list"></div>
+      </section>
+    </main>
+  </body>
+</html>
