@@ -16,6 +16,14 @@ const setStatus = (message) => {
   statusMessage.textContent = message;
 };
 
+// Recent searches tracking
+const recentSearchesKey = 'github-explorer-recent';
+const addRecentSearch = (username) => {
+  let recents = JSON.parse(localStorage.getItem(recentSearchesKey)) || [];
+  recents = [username, ...recents.filter(u => u !== username)].slice(0, 5);
+  localStorage.setItem(recentSearchesKey, JSON.stringify(recents));
+};
+
 const renderRepos = (repos) => {
   if (!repos.length) {
     repoList.innerHTML = '<p>No public repositories found.</p>';
@@ -76,6 +84,7 @@ const loadProfile = async (username) => {
     repoMeta.textContent = `Showing ${Math.min(repos.length, 6)} recent repositories for ${user.login}.`;
     renderRepos(repos);
     setStatus(`Loaded ${user.login} successfully.`);
+    addRecentSearch(trimmedUsername);
   } catch (error) {
     setStatus(error.message);
     repoMeta.textContent = 'Unable to load repositories.';
